@@ -1,39 +1,75 @@
 {
   "expo": {
-    "name": "mobile-app",
-    "slug": "mobile-app",
+    "name": "SSG InnoVoice",
+    "slug": "innovoice-mobile",
     "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "mobileapp",
+    "orientation": "default",
+    "icon": "./assets/images/ssg-logo.png",
+    "scheme": "innovoice",
     "userInterfaceStyle": "automatic",
+    "description": "CTU Daanbantayan Campus incident reporting system for students",
     "splash": {
-      "image": "./assets/images/splash-icon.png",
+      "image": "./assets/images/ssg-logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#dc2626"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ctudaanbantayan.innovoice",
+      "minimumOsVersion": "13.0",
+      "associatedDomains": [
+        "applinks:innovoice.ctudaanbantayan.edu.ph"
+      ]
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+        "foregroundImage": "./assets/images/ssg-logo.png",
+        "backgroundColor": "#dc2626"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.ctudaanbantayan.innovoice",
+      "minSdkVersion": 21,
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "https",
+              "host": "innovoice.ctudaanbantayan.edu.ph",
+              "pathPrefix": "/submit"
+            },
+            {
+              "scheme": "innovoice"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ]
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/ssg-logo.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-font",
+      "expo-localization",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "89b6240e-0ff9-4dd1-b7e7-bcb5642aec0f"
+      }
+    },
+    "owner": "mccoyzzz"
   }
 }
