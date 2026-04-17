@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal, Alert } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useLanguage } from '../../src/contexts/LanguageContext';
 import { useToast, ToastProvider } from '../../src/contexts/ToastContext';
@@ -13,6 +13,7 @@ import { DraftsList } from '../../src/components/drafts/DraftsList';
 import { SuccessModal } from '../../src/components/submission/SuccessModal';
 import { PrivacyPolicyModal } from '../../src/components/common/PrivacyPolicyModal';
 import { TermsOfUseModal } from '../../src/components/common/TermsOfUseModal';
+import { ConfirmDialog } from '../../src/components/common/ConfirmDialog';
 import { colors } from '../../src/styles/colors';
 import { TYPOGRAPHY } from '../../src/styles/typography';
 import { SPACING } from '../../src/styles/spacing';
@@ -32,6 +33,7 @@ export default function SettingsScreen() {
   const [successTrackingCode, setSuccessTrackingCode] = useState('');
   const [successAiData, setSuccessAiData] = useState(null);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [clearAllConfirmVisible, setClearAllConfirmVisible] = useState(false);
 
   const LANGUAGE_OPTIONS = availableLanguages.map(lang => ({
     label: lang.nativeName,
@@ -122,26 +124,23 @@ export default function SettingsScreen() {
       showToast(t('drafts.empty'), 'info');
       return;
     }
-    Alert.alert(
-      t('drafts.delete'),
-      t('drafts.deleteConfirm'),
-      [
-        { text: t('common.cancel'), style: 'cancel' },
-        {
-          text: t('common.delete'),
-          style: 'destructive',
-          onPress: async () => {
-            try {
-              await draftService.clearAllDrafts();
-              await refreshDrafts();
-              showToast(t('drafts.empty'), 'success');
-            } catch (error) {
-              showToast(t('errors.submissionFailed'), 'error');
-            }
-          },
-        },
-      ]
-    );
+    setClearAllConfirmVisible(true);
+  };
+
+  const confirmClearAll = async () => {
+    try {
+      await draftService.clearAllDrafts();
+      await refreshDrafts();
+      showToast(t('drafts.empty'), 'success');
+    } catch (error) {
+      showToast(t('errors.submissionFailed'), 'error');
+    } finally {
+      setClearAllConfirmVisible(false);
+    }
+  };
+
+  const cancelClearAll = () => {
+    setClearAllConfirmVisible(false);
   };
 
   const appVersion = Constants.expoConfig?.version || '1.0.0';
@@ -285,6 +284,18 @@ export default function SettingsScreen() {
       <TermsOfUseModal
         visible={showTermsModal}
         onClose={() => setShowTermsModal(false)}
+      />
+
+      {/* Clear All Drafts Confirmation Dialog */}
+      <ConfirmDialog
+        visible={clearAllConfirmVisible}
+        title={t('drafts.delete')}
+        message={t('drafts.deleteConfirm')}
+        confirmText={t('common.delete')}
+        cancelText={t('common.cancel')}
+        onConfirm={confirmClearAll}
+        onCancel={cancelClearAll}
+        destructive
       />
     </>
   );

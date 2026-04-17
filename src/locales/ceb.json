@@ -93,7 +93,8 @@
     "statusHistory": "Kasaysayan sa Kahimtang",
     "savedCodes": "Naka-save nga Tracking Codes",
     "removeCodeConfirm": "Tangtangon kini nga tracking code?",
-    "longPressToDelete": "Dugay og pindot aron tangtangon"
+    "longPressToDelete": "Dugay og pindot aron tangtangon",
+    "backToSavedCodes": "Balik sa Naka-save nga Codes"
   },
   "settings": {
     "title": "Settings",

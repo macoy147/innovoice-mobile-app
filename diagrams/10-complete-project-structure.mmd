@@ -1,0 +1,165 @@
+graph TB
+    START([InnoVoice Mobile App])
+    
+    %% Root Level
+    START --> ROOT[📁 Root Level]
+    ROOT --> CONFIG[Configuration Files]
+    ROOT --> APP_DIR[📁 /app Directory]
+    ROOT --> SRC_DIR[📁 /src Directory]
+    ROOT --> ASSETS_DIR[📁 /assets Directory]
+    ROOT --> DIAGRAMS_DIR[📁 /diagrams Directory]
+    ROOT --> DOCS[📄 Documentation Files]
+    
+    %% Configuration Files
+    CONFIG --> ENV[.env<br/>API URLs & Keys]
+    CONFIG --> APP_JSON[app.json<br/>Expo Config]
+    CONFIG --> PKG_JSON[package.json<br/>Dependencies]
+    CONFIG --> TS_CONFIG[tsconfig.json<br/>TypeScript Config]
+    CONFIG --> EAS_JSON[eas.json<br/>Build Config]
+    
+    %% App Directory
+    APP_DIR --> APP_LAYOUT[_layout.tsx<br/>Root Layout]
+    APP_DIR --> TABS_DIR[📁 (tabs)]
+    
+    APP_LAYOUT --> CONTEXTS_WRAP[Wraps All Contexts]
+    CONTEXTS_WRAP --> NET_CTX[NetworkContext]
+    CONTEXTS_WRAP --> LANG_CTX[LanguageContext]
+    CONTEXTS_WRAP --> TOAST_CTX[ToastContext]
+    CONTEXTS_WRAP --> APP_CTX[AppContext]
+    
+    TABS_DIR --> TAB_LAYOUT[_layout.jsx<br/>Tab Navigator]
+    TAB_LAYOUT --> HOME_TAB[index.jsx<br/>📱 Home Tab]
+    TAB_LAYOUT --> TRACK_TAB[track.jsx<br/>🔍 Track Tab]
+    TAB_LAYOUT --> SETTINGS_TAB[settings.jsx<br/>⚙️ Settings Tab]
+    
+    %% Home Tab Flow
+    HOME_TAB --> SUB_FORM[SubmissionForm.jsx]
+    SUB_FORM --> CAT_SEL[CategorySelector.jsx]
+    SUB_FORM --> PHOTO_PICK[PhotoPicker.jsx]
+    SUB_FORM --> SUBMITTER_FORM[SubmitterInfoForm.jsx]
+    SUB_FORM --> API_SERVICE[api.js]
+    SUB_FORM --> DRAFT_SERVICE[draftService.js]
+    
+    PHOTO_PICK --> IMG_SERVICE[imageService.js]
+    SUB_FORM --> VALIDATION[validation.js]
+    
+    %% Track Tab Flow
+    TRACK_TAB --> TRACK_INPUT[TrackingInput.jsx]
+    TRACK_TAB --> SUB_DETAILS[SubmissionDetails.jsx]
+    TRACK_TAB --> TRACK_API[api.js]
+    TRACK_TAB --> TRACK_STORAGE[storage.js]
+    TRACK_TAB --> BACK_BTN[Back to Saved Codes Button]
+    
+    SUB_DETAILS --> STATUS_BADGE[StatusBadge.jsx]
+    SUB_DETAILS --> STATUS_HIST[StatusHistory.jsx]
+    
+    %% Settings Tab Flow
+    SETTINGS_TAB --> DRAFTS_LIST[DraftsList.jsx]
+    SETTINGS_TAB --> LANG_SELECT[Language Selection]
+    SETTINGS_TAB --> PRIVACY_MODAL[PrivacyPolicyModal.jsx]
+    SETTINGS_TAB --> TERMS_MODAL[TermsOfUseModal.jsx]
+    
+    DRAFTS_LIST --> DRAFT_SVC[draftService.js]
+    LANG_SELECT --> LANG_CONTEXT[LanguageContext]
+    
+    %% Src Directory Structure
+    SRC_DIR --> COMPONENTS[📁 components]
+    SRC_DIR --> CONTEXTS[📁 contexts]
+    SRC_DIR --> SERVICES[📁 services]
+    SRC_DIR --> LOCALES[📁 locales]
+    SRC_DIR --> STYLES[📁 styles]
+    SRC_DIR --> UTILS[📁 utils]
+    SRC_DIR --> CONFIG_DIR[📁 config]
+    
+    %% Components
+    COMPONENTS --> COMMON_COMP[📁 common<br/>20+ Components]
+    COMPONENTS --> SUB_COMP[📁 submission<br/>Form Components]
+    COMPONENTS --> TRACK_COMP[📁 tracking<br/>Tracking Components]
+    COMPONENTS --> DRAFT_COMP[📁 drafts<br/>Draft Components]
+    COMPONENTS --> ONBOARD_COMP[📁 onboarding<br/>Tutorial]
+    
+    COMMON_COMP --> BUTTON[Button.jsx]
+    COMMON_COMP --> INPUT[Input.jsx]
+    COMMON_COMP --> PICKER[Picker.jsx]
+    COMMON_COMP --> LOADING[LoadingSpinner.jsx]
+    COMMON_COMP --> ERROR_MSG[ErrorMessage.jsx]
+    COMMON_COMP --> TOAST[Toast.jsx]
+    COMMON_COMP --> CONFIRM[ConfirmDialog.jsx]
+    COMMON_COMP --> OFFLINE_IND[OfflineIndicator.jsx]
+    
+    %% Contexts
+    CONTEXTS --> APP_CONTEXT[AppContext.jsx<br/>Global State]
+    CONTEXTS --> LANG_CONTEXT_FILE[LanguageContext.jsx<br/>i18n]
+    CONTEXTS --> NET_CONTEXT[NetworkContext.jsx<br/>Connectivity]
+    CONTEXTS --> TOAST_CONTEXT[ToastContext.jsx<br/>Notifications]
+    
+    %% Services
+    SERVICES --> API_SVC[api.js<br/>Backend API]
+    SERVICES --> DRAFT_SVC_FILE[draftService.js<br/>Draft CRUD]
+    SERVICES --> STORAGE_SVC[storage.js<br/>AsyncStorage]
+    SERVICES --> IMG_SVC[imageService.js<br/>Image Handling]
+    
+    API_SVC --> BACKEND[Backend Server<br/>Express API]
+    DRAFT_SVC_FILE --> STORAGE_SVC
+    
+    %% Locales
+    LOCALES --> EN_JSON[en.json<br/>English]
+    LOCALES --> TL_JSON[tl.json<br/>Tagalog]
+    LOCALES --> CEB_JSON[ceb.json<br/>Bisaya]
+    
+    LANG_CONTEXT_FILE --> EN_JSON
+    LANG_CONTEXT_FILE --> TL_JSON
+    LANG_CONTEXT_FILE --> CEB_JSON
+    
+    %% Styles
+    STYLES --> COLORS[colors.js<br/>Color Palette]
+    STYLES --> TYPO[typography.js<br/>Text Styles]
+    STYLES --> SPACING[spacing.js<br/>Spacing Scale]
+    
+    %% Utils
+    UTILS --> VALID_UTIL[validation.js<br/>Form Validation]
+    UTILS --> HAPTIC[haptics.js<br/>Haptic Feedback]
+    UTILS --> CONSTANTS[constants.js<br/>App Constants]
+    
+    %% Config
+    CONFIG_DIR --> API_CONFIG[api.config.js<br/>API Settings]
+    CONFIG_DIR --> APP_CONFIG[app.config.js<br/>App Settings]
+    
+    API_CONFIG --> ENV
+    
+    %% Assets
+    ASSETS_DIR --> IMAGES[📁 images<br/>Logos & Icons]
+    ASSETS_DIR --> FONTS[📁 fonts<br/>Custom Fonts]
+    
+    %% Diagrams
+    DIAGRAMS_DIR --> DIAG_FILES[9 Mermaid Diagrams<br/>Architecture Docs]
+    
+    %% Documentation
+    DOCS --> README[README.md]
+    DOCS --> ROADMAP[PRODUCT_ROADMAP.md]
+    DOCS --> TROUBLESHOOT[TROUBLESHOOTING.md]
+    DOCS --> PROJ_STRUCT[PROJECT_STRUCTURE.md]
+    
+    %% Data Flow
+    STORAGE_SVC --> ASYNC_STORAGE[(AsyncStorage<br/>Local Data)]
+    API_SVC --> BACKEND
+    BACKEND --> CLOUDINARY[Cloudinary<br/>Image Storage]
+    BACKEND --> MONGODB[(MongoDB<br/>Database)]
+    
+    %% Styling
+    classDef rootStyle fill:#667eea,stroke:#764ba2,stroke-width:3px,color:#fff
+    classDef dirStyle fill:#4299e1,stroke:#2b6cb0,stroke-width:2px,color:#fff
+    classDef fileStyle fill:#48bb78,stroke:#2f855a,stroke-width:2px,color:#fff
+    classDef componentStyle fill:#ed8936,stroke:#c05621,stroke-width:2px,color:#fff
+    classDef serviceStyle fill:#9f7aea,stroke:#6b46c1,stroke-width:2px,color:#fff
+    classDef contextStyle fill:#f56565,stroke:#c53030,stroke-width:2px,color:#fff
+    classDef storageStyle fill:#38b2ac,stroke:#2c7a7b,stroke-width:2px,color:#fff
+    classDef externalStyle fill:#718096,stroke:#4a5568,stroke-width:2px,color:#fff
+    
+    class START rootStyle
+    class ROOT,APP_DIR,SRC_DIR,ASSETS_DIR,DIAGRAMS_DIR,TABS_DIR,COMPONENTS,CONTEXTS,SERVICES,LOCALES,STYLES,UTILS,CONFIG_DIR dirStyle
+    class HOME_TAB,TRACK_TAB,SETTINGS_TAB,SUB_FORM,TRACK_INPUT,SUB_DETAILS,DRAFTS_LIST componentStyle
+    class API_SERVICE,DRAFT_SERVICE,IMG_SERVICE,STORAGE_SVC,API_SVC,DRAFT_SVC_FILE,IMG_SVC serviceStyle
+    class NET_CTX,LANG_CTX,TOAST_CTX,APP_CTX,APP_CONTEXT,LANG_CONTEXT_FILE,NET_CONTEXT,TOAST_CONTEXT contextStyle
+    class ASYNC_STORAGE,MONGODB storageStyle
+    class BACKEND,CLOUDINARY externalStyle

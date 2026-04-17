@@ -1,0 +1,102 @@
+---
+title: Report Submission Feature - Detailed Flow
+description: Step-by-step process of submitting a report
+---
+
+graph TB
+    START([User Taps<br/>Home Tab])
+    
+    START --> FORM[📝 Submission Form]
+    
+    %% Step 1: Category
+    FORM --> STEP1[Step 1: Select Category]
+    STEP1 --> CAT_CHOICE{Choose<br/>Category}
+    CAT_CHOICE -->|Academic| CAT_SEL[✅ Category Selected]
+    CAT_CHOICE -->|Administrative| CAT_SEL
+    CAT_CHOICE -->|Extracurricular| CAT_SEL
+    CAT_CHOICE -->|General| CAT_SEL
+    
+    %% Step 2: Details
+    CAT_SEL --> STEP2[Step 2: Enter Details]
+    STEP2 --> TITLE[📝 Enter Title<br/>Max 200 chars]
+    TITLE --> CONTENT[📝 Enter Description<br/>Max 2000 chars]
+    
+    %% Step 3: Photo (Optional)
+    CONTENT --> STEP3[Step 3: Add Photo<br/>Optional]
+    STEP3 --> PHOTO_CHOICE{Add Photo?}
+    PHOTO_CHOICE -->|Yes| PHOTO_SOURCE{Choose Source}
+    PHOTO_SOURCE -->|Camera| TAKE_PHOTO[📷 Take Photo]
+    PHOTO_SOURCE -->|Gallery| PICK_PHOTO[🖼️ Pick from Gallery]
+    TAKE_PHOTO --> PHOTO_ADDED[✅ Photo Added]
+    PICK_PHOTO --> PHOTO_ADDED
+    PHOTO_CHOICE -->|No| ANONYMOUS
+    PHOTO_ADDED --> ANONYMOUS
+    
+    %% Anonymous Toggle
+    ANONYMOUS[🔒 Anonymous Toggle]
+    ANONYMOUS --> ANON_CHOICE{Submit<br/>Anonymously?}
+    ANON_CHOICE -->|Yes| SKIP_INFO[Skip Personal Info]
+    ANON_CHOICE -->|No| PERSONAL_INFO[👤 Enter Personal Info]
+    
+    PERSONAL_INFO --> INFO_FIELDS[Fill Fields:<br/>- Name<br/>- Student ID<br/>- Email<br/>- Contact<br/>- Program<br/>- Year Level]
+    
+    INFO_FIELDS --> REVIEW
+    SKIP_INFO --> REVIEW
+    
+    %% Review Summary
+    REVIEW[📋 Review Summary]
+    REVIEW --> VALIDATE{Form<br/>Valid?}
+    
+    VALIDATE -->|No| ERROR[❌ Show Errors]
+    ERROR --> FORM
+    
+    VALIDATE -->|Yes| NETWORK_CHECK{Internet<br/>Connected?}
+    
+    %% Online Submission
+    NETWORK_CHECK -->|Yes| SUBMIT[📤 Submit to Server]
+    SUBMIT --> SUBMITTING[⏳ Submitting...]
+    SUBMITTING --> API_CALL[🌐 API Call]
+    
+    API_CALL --> AI_PROCESS[🤖 AI Priority Analysis<br/>Groq/Gemini]
+    AI_PROCESS --> SAVE_DB[(💾 Save to MongoDB)]
+    SAVE_DB --> UPLOAD_IMG[☁️ Upload to Cloudinary]
+    UPLOAD_IMG --> SUCCESS
+    
+    SUCCESS[✅ Success!<br/>Show Tracking Code]
+    SUCCESS --> SAVE_CODE[💾 Auto-save<br/>Tracking Code]
+    SAVE_CODE --> SUCCESS_MODAL[🎉 Success Modal]
+    
+    SUCCESS_MODAL --> MODAL_CHOICE{User Action}
+    MODAL_CHOICE -->|View Tracking| GO_TRACK[🔍 Go to Track Tab]
+    MODAL_CHOICE -->|Close| CLEAR_FORM[🔄 Clear Form]
+    
+    %% Offline - Save Draft
+    NETWORK_CHECK -->|No| OFFLINE_MSG[🔴 Offline Message]
+    OFFLINE_MSG --> DRAFT_OPTION[💾 Save as Draft Option]
+    
+    %% Manual Save Draft
+    REVIEW --> MANUAL_DRAFT{User Taps<br/>Save Draft?}
+    MANUAL_DRAFT -->|Yes| SAVE_DRAFT
+    
+    DRAFT_OPTION --> SAVE_DRAFT[💾 Save to AsyncStorage]
+    SAVE_DRAFT --> DRAFT_SAVED[✅ Draft Saved]
+    DRAFT_SAVED --> CLEAR_FORM
+    
+    CLEAR_FORM --> END([Ready for<br/>New Report])
+    GO_TRACK --> END
+    
+    %% Styling
+    classDef startEnd fill:#16a34a,stroke:#15803d,stroke-width:3px,color:#fff
+    classDef decision fill:#f59e0b,stroke:#d97706,stroke-width:2px,color:#fff
+    classDef process fill:#3b82f6,stroke:#1e40af,stroke-width:2px,color:#fff
+    classDef error fill:#dc2626,stroke:#991b1b,stroke-width:2px,color:#fff
+    classDef success fill:#22c55e,stroke:#16a34a,stroke-width:2px,color:#fff
+    classDef storage fill:#8b5cf6,stroke:#6d28d9,stroke-width:2px,color:#fff
+    
+    class START,END startEnd
+    class CAT_CHOICE,PHOTO_CHOICE,ANON_CHOICE,VALIDATE,NETWORK_CHECK,MODAL_CHOICE,MANUAL_DRAFT decision
+    class FORM,STEP1,STEP2,STEP3,CAT_SEL,TITLE,CONTENT,PHOTO_ADDED,ANONYMOUS,PERSONAL_INFO,INFO_FIELDS,REVIEW process
+    class SUBMIT,SUBMITTING,API_CALL,AI_PROCESS,UPLOAD_IMG process
+    class ERROR,OFFLINE_MSG error
+    class SUCCESS,SUCCESS_MODAL,DRAFT_SAVED success
+    class SAVE_DB,SAVE_DRAFT,SAVE_CODE storage

@@ -1,9 +1,11 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, RefreshControl, Animated, Alert } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, RefreshControl, Animated } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { TrackingInput } from '../../src/components/tracking/TrackingInput';
 import { SubmissionDetails } from '../../src/components/tracking/SubmissionDetails';
 import { ErrorMessage } from '../../src/components/common/ErrorMessage';
 import { LoadingSpinner } from '../../src/components/common/LoadingSpinner';
+import { ConfirmDialog } from '../../src/components/common/ConfirmDialog';
 import { useNetwork } from '../../src/contexts/NetworkContext';
 import { useLanguage } from '../../src/contexts/LanguageContext';
 import { apiService } from '../../src/services/api';
@@ -21,6 +23,8 @@ export default function TrackingScreen() {
   const [error, setError] = useState(null);
   const [savedCodes, setSavedCodes] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
+  const [deleteConfirmVisible, setDeleteConfirmVisible] = useState(false);
+  const [codeToDelete, setCodeToDelete] = useState(null);
 
   useEffect(() => {
     loadSavedCodes();
@@ -104,21 +108,41 @@ export default function TrackingScreen() {
 
   const handleRemoveCode = (code) => {
     hapticFeedback.warning();
-    Alert.alert(
-      t('common.delete'),
-      `${t('tracking.removeCodeConfirm') || 'Remove this tracking code?'}`,
-      [
-        { text: t('common.cancel'), style: 'cancel' },
-        {
-          text: t('common.delete'),
-          style: 'destructive',
-          onPress: async () => {
-            await draftService.removeTrackingCode(code);
-            setSavedCodes(prev => prev.filter(c => c !== code));
-          },
-        },
-      ]
-    );
+    setCodeToDelete(code);
+    setDeleteConfirmVisible(true);
+  };
+
+  const confirmDeleteCode = async () => {
+    if (!codeToDelete) return;
+
+    try {
+      console.log('Attempting to remove tracking code:', codeToDelete);
+      await draftService.removeTrackingCode(codeToDelete);
+      setSavedCodes(prev => prev.filter(c => c !== codeToDelete));
+      hapticFeedback.success();
+      console.log('Tracking code removed successfully');
+    } catch (error) {
+      console.error('Failed to remove tracking code:', error);
+      hapticFeedback.error();
+      if (error.message?.includes('verification failed')) {
+        console.warn('Tracking code removal verification failed');
+      }
+      loadSavedCodes();
+    } finally {
+      setDeleteConfirmVisible(false);
+      setCodeToDelete(null);
+    }
+  };
+
+  const cancelDeleteCode = () => {
+    setDeleteConfirmVisible(false);
+    setCodeToDelete(null);
+  };
+
+  const handleBackToSavedCodes = () => {
+    hapticFeedback.selection();
+    setSubmission(null);
+    setError(null);
   };
 
   return (
@@ -150,6 +174,32 @@ export default function TrackingScreen() {
         onSearch={handleSearch}
         isSearching={isSearching}
       />
+
+      {submission && savedCodes.length > 0 && (
+        <View style={styles.backButtonContainer}>
+          <TouchableOpacity
+            style={styles.backButton}
+            onPress={handleBackToSavedCodes}
+            accessibilityLabel={t('common.back') || 'Back to saved codes'}
+            accessibilityRole="button"
+            activeOpacity={0.7}
+          >
+            <View style={styles.backButtonContent}>
+              <View style={styles.backIconCircle}>
+                <Ionicons name="arrow-back" size={24} color={colors.white} />
+              </View>
+              <View style={styles.backButtonTextContainer}>
+                <Text style={styles.backButtonText}>
+                  {t('tracking.backToSavedCodes') || 'Back to Saved Codes'}
+                </Text>
+                <Text style={styles.backButtonSubtext}>
+                  {savedCodes.length} {savedCodes.length === 1 ? 'code' : 'codes'} saved
+                </Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+        </View>
+      )}
 
       {/* Saved Tracking Codes */}
       {savedCodes.length > 0 && !submission && (
@@ -196,6 +246,17 @@ export default function TrackingScreen() {
       {submission && (
         <SubmissionDetails submission={submission} />
       )}
+
+      <ConfirmDialog
+        visible={deleteConfirmVisible}
+        title={t('common.delete')}
+        message={t('tracking.removeCodeConfirm') || 'Remove this tracking code?'}
+        confirmText={t('common.delete')}
+        cancelText={t('common.cancel')}
+        onConfirm={confirmDeleteCode}
+        onCancel={cancelDeleteCode}
+        destructive
+      />
     </ScrollView>
   );
 }
@@ -265,6 +326,49 @@ const styles = StyleSheet.create({
   },
   savedCodeArrow: {
     ...TYPOGRAPHY.h3,
+    color: colors.textLight,
+  },
+  backButtonContainer: {
+    marginTop: SPACING.xl,
+    marginBottom: SPACING.lg,
+  },
+  backButton: {
+    backgroundColor: colors.surface,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: colors.border,
+    shadowColor: colors.black,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  backButtonContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: SPACING.md,
+    paddingHorizontal: SPACING.md,
+  },
+  backIconCircle: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: colors.primary,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: SPACING.md,
+  },
+  backButtonTextContainer: {
+    flex: 1,
+  },
+  backButtonText: {
+    ...TYPOGRAPHY.body,
+    color: colors.textDark,
+    fontWeight: '600',
+    marginBottom: 2,
+  },
+  backButtonSubtext: {
+    ...TYPOGRAPHY.caption,
     color: colors.textLight,
   },
 });

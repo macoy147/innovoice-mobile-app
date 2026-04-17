@@ -1,0 +1,111 @@
+---
+title: Report Tracking Feature - Detailed Flow
+description: How users track and monitor their submitted reports
+---
+
+graph TB
+    START([User Taps<br/>Track Tab])
+    
+    START --> TRACK_SCREEN[🔍 Tracking Screen]
+    
+    %% Initial State
+    TRACK_SCREEN --> HAS_SAVED{Has Saved<br/>Tracking Codes?}
+    
+    HAS_SAVED -->|Yes| SHOW_SAVED[📋 Show Saved Codes List<br/>Up to 5 recent codes]
+    HAS_SAVED -->|No| SHOW_INPUT[🔍 Show Search Input Only]
+    
+    SHOW_SAVED --> USER_ACTION{User Action}
+    SHOW_INPUT --> MANUAL_SEARCH
+    
+    %% User Actions
+    USER_ACTION -->|Tap Saved Code| AUTO_SEARCH[🔍 Auto-search Code]
+    USER_ACTION -->|Manual Entry| MANUAL_SEARCH[⌨️ Enter Tracking Code]
+    USER_ACTION -->|Long Press Code| DELETE_PROMPT[🗑️ Delete Confirmation]
+    USER_ACTION -->|Tap X Button| DELETE_PROMPT
+    
+    %% Delete Flow
+    DELETE_PROMPT --> DELETE_CHOICE{Confirm<br/>Delete?}
+    DELETE_CHOICE -->|Yes| DELETE_CODE[🗑️ Remove from Storage]
+    DELETE_CODE --> UPDATE_LIST[🔄 Update List]
+    UPDATE_LIST --> SHOW_SAVED
+    DELETE_CHOICE -->|No| SHOW_SAVED
+    
+    %% Search Flow
+    MANUAL_SEARCH --> VALIDATE_FORMAT{Valid<br/>Format?}
+    VALIDATE_FORMAT -->|No| FORMAT_ERROR[❌ Invalid Format<br/>VISI-XXXXX-XXXX]
+    FORMAT_ERROR --> MANUAL_SEARCH
+    
+    VALIDATE_FORMAT -->|Yes| NETWORK_CHECK{Internet<br/>Connected?}
+    
+    NETWORK_CHECK -->|No| OFFLINE_ERROR[🔴 Offline Error<br/>Cannot Track]
+    OFFLINE_ERROR --> TRACK_SCREEN
+    
+    NETWORK_CHECK -->|Yes| SEARCHING[⏳ Searching...]
+    AUTO_SEARCH --> SEARCHING
+    
+    SEARCHING --> API_TRACK[🌐 API: Track Submission]
+    API_TRACK --> API_RESPONSE{Response}
+    
+    %% API Responses
+    API_RESPONSE -->|Found| FOUND[✅ Report Found]
+    API_RESPONSE -->|Not Found| NOT_FOUND[❌ Code Not Found]
+    API_RESPONSE -->|Deleted| DELETED[🗑️ Report Deleted<br/>by Admin]
+    API_RESPONSE -->|Error| SERVER_ERROR[⚠️ Server Error]
+    
+    NOT_FOUND --> ERROR_MSG[Show Error Message]
+    DELETED --> ERROR_MSG
+    SERVER_ERROR --> ERROR_MSG
+    ERROR_MSG --> TRACK_SCREEN
+    
+    %% Success - Show Details
+    FOUND --> SAVE_NEW{Code Already<br/>Saved?}
+    SAVE_NEW -->|No| AUTO_SAVE[💾 Auto-save Code]
+    SAVE_NEW -->|Yes| SHOW_DETAILS
+    AUTO_SAVE --> SHOW_DETAILS
+    
+    SHOW_DETAILS[📊 Show Report Details]
+    
+    %% Details Components
+    SHOW_DETAILS --> BACK_BTN[⬅️ Back to Saved Codes Button]
+    SHOW_DETAILS --> DETAIL_CARD[📄 Report Details Card]
+    
+    DETAIL_CARD --> INFO_DISPLAY[Display Info:<br/>- Category<br/>- Title<br/>- Content<br/>- Photo if any<br/>- Submitted Date]
+    
+    INFO_DISPLAY --> STATUS_BADGE[🏷️ Current Status Badge]
+    STATUS_BADGE --> PRIORITY_BADGE[⚡ Priority Badge]
+    PRIORITY_BADGE --> AI_REASON[🤖 AI Analysis Reason]
+    
+    AI_REASON --> STATUS_HISTORY[📜 Status History Timeline]
+    STATUS_HISTORY --> HISTORY_ITEMS[Show All Status Changes:<br/>- Timestamp<br/>- Status<br/>- Updated By]
+    
+    %% Refresh
+    SHOW_DETAILS --> PULL_REFRESH{User Pulls<br/>to Refresh?}
+    PULL_REFRESH -->|Yes| REFRESH[🔄 Refresh Data]
+    REFRESH --> API_TRACK
+    PULL_REFRESH -->|No| WAIT
+    
+    %% Back Navigation
+    BACK_BTN --> BACK_CLICK{User Taps<br/>Back Button?}
+    BACK_CLICK -->|Yes| CLEAR_VIEW[🔄 Clear Details View]
+    CLEAR_VIEW --> SHOW_SAVED
+    BACK_CLICK -->|No| WAIT
+    
+    WAIT[⏰ User Viewing]
+    WAIT --> SHOW_DETAILS
+    
+    %% Styling
+    classDef startEnd fill:#16a34a,stroke:#15803d,stroke-width:3px,color:#fff
+    classDef decision fill:#f59e0b,stroke:#d97706,stroke-width:2px,color:#fff
+    classDef process fill:#3b82f6,stroke:#1e40af,stroke-width:2px,color:#fff
+    classDef error fill:#dc2626,stroke:#991b1b,stroke-width:2px,color:#fff
+    classDef success fill:#22c55e,stroke:#16a34a,stroke-width:2px,color:#fff
+    classDef storage fill:#8b5cf6,stroke:#6d28d9,stroke-width:2px,color:#fff
+    classDef display fill:#06b6d4,stroke:#0891b2,stroke-width:2px,color:#fff
+    
+    class START startEnd
+    class HAS_SAVED,USER_ACTION,DELETE_CHOICE,VALIDATE_FORMAT,NETWORK_CHECK,API_RESPONSE,SAVE_NEW,PULL_REFRESH,BACK_CLICK decision
+    class TRACK_SCREEN,SHOW_SAVED,SHOW_INPUT,MANUAL_SEARCH,AUTO_SEARCH,SEARCHING,API_TRACK,UPDATE_LIST,REFRESH,CLEAR_VIEW process
+    class FORMAT_ERROR,OFFLINE_ERROR,NOT_FOUND,DELETED,SERVER_ERROR,ERROR_MSG error
+    class FOUND,SHOW_DETAILS success
+    class DELETE_CODE,AUTO_SAVE storage
+    class BACK_BTN,DETAIL_CARD,INFO_DISPLAY,STATUS_BADGE,PRIORITY_BADGE,AI_REASON,STATUS_HISTORY,HISTORY_ITEMS display

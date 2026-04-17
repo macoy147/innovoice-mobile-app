@@ -1,0 +1,73 @@
+---
+title: InnoVoice Mobile App - Complete User Journey
+description: End-to-end user flow from app launch to report resolution
+---
+
+graph TB
+    START([👤 User Opens App])
+    
+    %% First Time vs Returning
+    START --> FIRST_CHECK{First Time<br/>User?}
+    
+    FIRST_CHECK -->|Yes| ONBOARDING[📖 Onboarding Screens<br/>- Welcome<br/>- Features Tour<br/>- Language Selection]
+    FIRST_CHECK -->|No| LOAD_SCREEN[⏳ Network Loading Screen<br/>Speed-aware Progress]
+    
+    ONBOARDING --> LOAD_SCREEN
+    
+    %% Main App
+    LOAD_SCREEN --> MAIN_TABS[📱 Main App<br/>Tab Navigation]
+    
+    %% Three Main Tabs
+    MAIN_TABS --> TAB_HOME[🏠 Home Tab<br/>Submit Report]
+    MAIN_TABS --> TAB_TRACK[🔍 Track Tab<br/>Track Reports]
+    MAIN_TABS --> TAB_SETTINGS[⚙️ Settings Tab<br/>App Settings]
+    
+    %% Home Tab Flow
+    TAB_HOME --> SUBMIT_FLOW[📝 Submission Flow]
+    SUBMIT_FLOW --> SUBMIT_SUCCESS[✅ Success Modal<br/>Tracking Code]
+    SUBMIT_FLOW --> SAVE_DRAFT[💾 Save as Draft]
+    
+    SUBMIT_SUCCESS --> TRACK_NEW[🔍 Track New Report]
+    SAVE_DRAFT --> DRAFT_STORAGE[(📦 Local Storage)]
+    
+    %% Track Tab Flow
+    TAB_TRACK --> TRACK_FLOW[🔍 Tracking Flow]
+    TRACK_FLOW --> VIEW_STATUS[📊 View Status<br/>& History]
+    TRACK_FLOW --> SAVE_CODE[💾 Save Tracking Code]
+    
+    %% Settings Tab Flow
+    TAB_SETTINGS --> SETTINGS_FLOW[⚙️ Settings Flow]
+    SETTINGS_FLOW --> VIEW_DRAFTS[📄 View Drafts]
+    SETTINGS_FLOW --> CHANGE_LANG[🌍 Change Language]
+    SETTINGS_FLOW --> VIEW_LEGAL[📜 Privacy/Terms]
+    
+    VIEW_DRAFTS --> EDIT_DRAFT[✏️ Edit Draft]
+    VIEW_DRAFTS --> DELETE_DRAFT[🗑️ Delete Draft]
+    VIEW_DRAFTS --> SUBMIT_DRAFT[📤 Submit Draft]
+    
+    EDIT_DRAFT --> TAB_HOME
+    SUBMIT_DRAFT --> SUBMIT_SUCCESS
+    
+    %% Continuous Monitoring
+    MAIN_TABS -.->|Always Active| NETWORK_MON[📡 Network Monitor]
+    MAIN_TABS -.->|Always Active| OFFLINE_IND[🔴 Offline Indicator]
+    
+    %% Resolution
+    VIEW_STATUS --> RESOLVED{Report<br/>Resolved?}
+    RESOLVED -->|Yes| END_SATISFIED([😊 User Satisfied])
+    RESOLVED -->|No| WAIT[⏰ Wait for Update]
+    WAIT --> TRACK_FLOW
+    
+    %% Styling
+    classDef startEnd fill:#16a34a,stroke:#15803d,stroke-width:3px,color:#fff
+    classDef decision fill:#f59e0b,stroke:#d97706,stroke-width:2px,color:#fff
+    classDef process fill:#3b82f6,stroke:#1e40af,stroke-width:2px,color:#fff
+    classDef storage fill:#8b5cf6,stroke:#6d28d9,stroke-width:2px,color:#fff
+    classDef important fill:#dc2626,stroke:#991b1b,stroke-width:2px,color:#fff
+    
+    class START,END_SATISFIED startEnd
+    class FIRST_CHECK,RESOLVED decision
+    class ONBOARDING,LOAD_SCREEN,MAIN_TABS,TAB_HOME,TAB_TRACK,TAB_SETTINGS process
+    class SUBMIT_FLOW,TRACK_FLOW,SETTINGS_FLOW,VIEW_STATUS process
+    class DRAFT_STORAGE storage
+    class SUBMIT_SUCCESS,SAVE_DRAFT important

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { draftService } from '../../services/draftService';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useToast } from '../../contexts/ToastContext';
 import { Button } from '../common/Button';
 import { LoadingSpinner } from '../common/LoadingSpinner';
 import { ErrorMessage } from '../common/ErrorMessage';
+import { ConfirmDialog } from '../common/ConfirmDialog';
 import { colors } from '../../styles/colors';
 import { TYPOGRAPHY } from '../../styles/typography';
 import { SPACING } from '../../styles/spacing';
@@ -41,7 +43,8 @@ const DraftCard = ({ draft, onEdit, onDelete, onSubmit, t }) => {
 
       {draft.photo && (
         <View style={styles.photoIndicator}>
-          <Text style={styles.photoText}>📷 {t('submission.addPhoto')}</Text>
+          <Ionicons name="image" size={16} color={colors.textLight} style={{ marginRight: 4 }} />
+          <Text style={styles.photoText}>{t('submission.addPhoto')}</Text>
         </View>
       )}
 
@@ -64,7 +67,7 @@ const DraftCard = ({ draft, onEdit, onDelete, onSubmit, t }) => {
           accessibilityLabel={t('common.delete')}
           accessibilityRole="button"
         >
-          <Text style={styles.deleteText}>🗑️</Text>
+          <Ionicons name="trash-outline" size={20} color={colors.error} />
         </TouchableOpacity>
       </View>
     </View>
@@ -77,6 +80,8 @@ export const DraftsList = ({ onEditDraft, onSubmitDraft, onDraftDeleted }) => {
   const [drafts, setDrafts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [deleteConfirmVisible, setDeleteConfirmVisible] = useState(false);
+  const [draftToDelete, setDraftToDelete] = useState(null);
 
   useEffect(() => {
     loadDrafts();
@@ -108,27 +113,29 @@ export const DraftsList = ({ onEditDraft, onSubmitDraft, onDraftDeleted }) => {
   };
 
   const handleDelete = (draftId) => {
-    Alert.alert(
-      t('drafts.delete'),
-      t('drafts.deleteConfirm'),
-      [
-        { text: t('common.cancel'), style: 'cancel' },
-        {
-          text: t('common.delete'),
-          style: 'destructive',
-          onPress: async () => {
-            try {
-              await draftService.deleteDraft(draftId);
-              setDrafts(prev => prev.filter(d => d.id !== draftId));
-              if (onDraftDeleted) onDraftDeleted();
-              showToast(t('common.success'), 'success');
-            } catch (err) {
-              showToast(t('errors.submissionFailed'), 'error');
-            }
-          },
-        },
-      ]
-    );
+    setDraftToDelete(draftId);
+    setDeleteConfirmVisible(true);
+  };
+
+  const confirmDelete = async () => {
+    if (!draftToDelete) return;
+
+    try {
+      await draftService.deleteDraft(draftToDelete);
+      setDrafts(prev => prev.filter(d => d.id !== draftToDelete));
+      if (onDraftDeleted) onDraftDeleted();
+      showToast(t('common.success'), 'success');
+    } catch (err) {
+      showToast(t('errors.submissionFailed'), 'error');
+    } finally {
+      setDeleteConfirmVisible(false);
+      setDraftToDelete(null);
+    }
+  };
+
+  const cancelDelete = () => {
+    setDeleteConfirmVisible(false);
+    setDraftToDelete(null);
   };
 
   if (loading) {
@@ -142,7 +149,7 @@ export const DraftsList = ({ onEditDraft, onSubmitDraft, onDraftDeleted }) => {
   if (drafts.length === 0) {
     return (
       <View style={styles.emptyContainer}>
-        <Text style={styles.emptyIcon}>📝</Text>
+        <Ionicons name="document-text-outline" size={64} color={colors.textLight} />
         <Text style={styles.emptyTitle}>{t('drafts.empty')}</Text>
         <Text style={styles.emptyText}>
           {t('offline.message')}
@@ -173,6 +180,17 @@ export const DraftsList = ({ onEditDraft, onSubmitDraft, onDraftDeleted }) => {
           />
         )}
         contentContainerStyle={styles.listContent}
+      />
+
+      <ConfirmDialog
+        visible={deleteConfirmVisible}
+        title={t('drafts.delete')}
+        message={t('drafts.deleteConfirm')}
+        confirmText={t('common.delete')}
+        cancelText={t('common.cancel')}
+        onConfirm={confirmDelete}
+        onCancel={cancelDelete}
+        destructive
       />
     </View>
   );
@@ -283,18 +301,11 @@ const styles = StyleSheet.create({
     borderColor: colors.error,
     borderRadius: 8,
   },
-  deleteText: {
-    fontSize: 20,
-  },
   emptyContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: SPACING.xl,
-  },
-  emptyIcon: {
-    fontSize: 64,
-    marginBottom: SPACING.md,
   },
   emptyTitle: {
     ...TYPOGRAPHY.h2,

@@ -93,7 +93,8 @@
     "statusHistory": "Kasaysayan ng Katayuan",
     "savedCodes": "Naka-save na Tracking Codes",
     "removeCodeConfirm": "Alisin ang tracking code na ito?",
-    "longPressToDelete": "Pindutin nang matagal para tanggalin"
+    "longPressToDelete": "Pindutin nang matagal para tanggalin",
+    "backToSavedCodes": "Bumalik sa Naka-save na Codes"
   },
   "settings": {
     "title": "Settings",

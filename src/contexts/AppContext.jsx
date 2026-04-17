@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import DraftService from '../services/draftService';
+import { draftService } from '../services/draftService';
 import StorageService from '../services/storage';
 import apiService from '../services/api';
 import { API_CONFIG } from '../config/api.config';
@@ -87,9 +87,12 @@ export const AppProvider = ({ children }) => {
    */
   const refreshDrafts = async () => {
     try {
-      const allDrafts = await DraftService.getAllDrafts();
+      console.log('AppContext.refreshDrafts() - Starting');
+      const allDrafts = await draftService.getAllDrafts();
+      console.log('AppContext.refreshDrafts() - Got drafts:', allDrafts.length);
       setDrafts(allDrafts);
       setDraftCount(allDrafts.length);
+      console.log('AppContext.refreshDrafts() - State updated');
     } catch (error) {
       console.error('Error refreshing drafts:', error);
     }
@@ -102,7 +105,7 @@ export const AppProvider = ({ children }) => {
    */
   const addDraft = async (draftData) => {
     try {
-      const newDraft = await DraftService.createDraft(draftData);
+      const newDraft = await draftService.createDraft(draftData);
       await refreshDrafts();
       return newDraft;
     } catch (error) {
@@ -119,7 +122,7 @@ export const AppProvider = ({ children }) => {
    */
   const updateDraft = async (draftId, updates) => {
     try {
-      const updatedDraft = await DraftService.updateDraft(draftId, updates);
+      const updatedDraft = await draftService.updateDraft(draftId, updates);
       await refreshDrafts();
       return updatedDraft;
     } catch (error) {
@@ -135,7 +138,7 @@ export const AppProvider = ({ children }) => {
    */
   const removeDraft = async (draftId) => {
     try {
-      await DraftService.deleteDraft(draftId);
+      await draftService.deleteDraft(draftId);
       await refreshDrafts();
     } catch (error) {
       console.error('Error removing draft:', error);

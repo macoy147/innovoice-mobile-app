@@ -93,7 +93,8 @@
     "statusHistory": "Status History",
     "savedCodes": "Saved Tracking Codes",
     "removeCodeConfirm": "Remove this tracking code?",
-    "longPressToDelete": "Long press to delete"
+    "longPressToDelete": "Long press to delete",
+    "backToSavedCodes": "Back to Saved Codes"
   },
   "settings": {
     "title": "Settings",
