@@ -1,0 +1,91 @@
+---
+title: Offline/Online Behavior & Data Sync
+description: How the app handles network connectivity changes
+---
+
+graph TB
+    START([App Running])
+    
+    START --> MONITOR[Network Monitor Always Active]
+    
+    MONITOR --> CHECK_STATUS{Network Status?}
+    
+    CHECK_STATUS -->|Online| ONLINE_STATE[Online Mode]
+    ONLINE_STATE --> ONLINE_FEATURES[Available Features]
+    
+    ONLINE_FEATURES --> SUBMIT_ONLINE[Submit Reports Directly to Server]
+    ONLINE_FEATURES --> TRACK_ONLINE[Track Reports Real-time Status]
+    ONLINE_FEATURES --> DRAFT_SUBMIT[Submit Saved Drafts]
+    
+    SUBMIT_ONLINE --> API_SUCCESS{API Success?}
+    API_SUCCESS -->|Yes| SAVE_TRACKING[Save Tracking Code]
+    API_SUCCESS -->|No| SHOW_ERROR[Show Error]
+    SHOW_ERROR --> OFFER_DRAFT[Offer Save as Draft]
+    
+    TRACK_ONLINE --> FETCH_STATUS[Fetch Latest Status]
+    FETCH_STATUS --> DISPLAY_STATUS[Display Details]
+    
+    CHECK_STATUS -->|Offline| OFFLINE_STATE[Offline Mode]
+    OFFLINE_STATE --> SHOW_INDICATOR[Show Offline Indicator Top of Screen]
+    SHOW_INDICATOR --> OFFLINE_FEATURES[Limited Features]
+    
+    OFFLINE_FEATURES --> DRAFT_ONLY[Draft Management Only]
+    DRAFT_ONLY --> CREATE_DRAFT[Create New Draft]
+    DRAFT_ONLY --> EDIT_DRAFT[Edit Existing Draft]
+    DRAFT_ONLY --> DELETE_DRAFT[Delete Draft]
+    DRAFT_ONLY --> VIEW_DRAFTS[View Saved Drafts]
+    
+    OFFLINE_FEATURES --> DISABLED_FEATURES[Disabled Features]
+    DISABLED_FEATURES --> NO_SUBMIT[Cannot Submit Reports]
+    DISABLED_FEATURES --> NO_TRACK[Cannot Track Reports]
+    DISABLED_FEATURES --> NO_REFRESH[Cannot Refresh Status]
+    
+    NO_SUBMIT --> ATTEMPT_SUBMIT{User Tries to Submit?}
+    ATTEMPT_SUBMIT -->|Yes| OFFLINE_ERROR[Show Offline Error]
+    OFFLINE_ERROR --> SUGGEST_DRAFT[Suggest Save as Draft]
+    SUGGEST_DRAFT --> SAVE_DRAFT[Save to AsyncStorage]
+    
+    NO_TRACK --> ATTEMPT_TRACK{User Tries to Track?}
+    ATTEMPT_TRACK -->|Yes| TRACK_ERROR[Cannot Track Offline]
+    TRACK_ERROR --> WAIT_ONLINE[Wait for Connection]
+    
+    MONITOR --> DETECT_CHANGE{Network Changed?}
+    
+    DETECT_CHANGE -->|Offline to Online| RECONNECT[Reconnected]
+    RECONNECT --> HIDE_INDICATOR[Hide Offline Indicator]
+    HIDE_INDICATOR --> ENABLE_FEATURES[Enable All Features]
+    ENABLE_FEATURES --> NOTIFY_USER[Show Success Toast Back Online]
+    NOTIFY_USER --> CHECK_DRAFTS{Has Pending Drafts?}
+    
+    CHECK_DRAFTS -->|Yes| REMIND_DRAFTS[Remind User You have X drafts]
+    CHECK_DRAFTS -->|No| ONLINE_STATE
+    REMIND_DRAFTS --> ONLINE_STATE
+    
+    DETECT_CHANGE -->|Online to Offline| DISCONNECT[Disconnected]
+    DISCONNECT --> SHOW_INDICATOR
+    DISCONNECT --> DISABLE_FEATURES[Disable Online Features]
+    DISABLE_FEATURES --> NOTIFY_OFFLINE[Show Warning Toast You are Offline]
+    NOTIFY_OFFLINE --> OFFLINE_STATE
+    
+    SAVE_DRAFT --> STORED[AsyncStorage]
+    STORED -.->|Persisted| WAIT_ONLINE
+    WAIT_ONLINE -.->|When Online| DRAFT_SUBMIT
+    
+    ONLINE_STATE -.->|Monitor| MONITOR
+    OFFLINE_STATE -.->|Monitor| MONITOR
+    
+    classDef online fill:#22c55e,stroke:#16a34a,stroke-width:2px,color:#fff
+    classDef offline fill:#dc2626,stroke:#991b1b,stroke-width:2px,color:#fff
+    classDef decision fill:#f59e0b,stroke:#d97706,stroke-width:2px,color:#fff
+    classDef process fill:#3b82f6,stroke:#1e40af,stroke-width:2px,color:#fff
+    classDef storage fill:#8b5cf6,stroke:#6d28d9,stroke-width:2px,color:#fff
+    classDef notification fill:#06b6d4,stroke:#0891b2,stroke-width:2px,color:#fff
+    
+    class ONLINE_STATE,ONLINE_FEATURES,SUBMIT_ONLINE,TRACK_ONLINE,RECONNECT,HIDE_INDICATOR,ENABLE_FEATURES online
+    class OFFLINE_STATE,OFFLINE_FEATURES,SHOW_INDICATOR,DISABLED_FEATURES,NO_SUBMIT,NO_TRACK,NO_REFRESH offline
+    class OFFLINE_ERROR,TRACK_ERROR,DISCONNECT,DISABLE_FEATURES,SHOW_ERROR offline
+    class CHECK_STATUS,API_SUCCESS,ATTEMPT_SUBMIT,ATTEMPT_TRACK,DETECT_CHANGE,CHECK_DRAFTS decision
+    class MONITOR,DRAFT_ONLY,CREATE_DRAFT,EDIT_DRAFT,DELETE_DRAFT,VIEW_DRAFTS,SAVE_DRAFT process
+    class FETCH_STATUS,DISPLAY_STATUS,DRAFT_SUBMIT,WAIT_ONLINE process
+    class STORED storage
+    class NOTIFY_USER,NOTIFY_OFFLINE,REMIND_DRAFTS,SUGGEST_DRAFT notification

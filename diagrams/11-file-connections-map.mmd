@@ -1,0 +1,139 @@
+graph LR
+    %% User Interface Layer
+    subgraph UI["🖥️ User Interface Layer"]
+        HOME[Home Screen<br/>index.jsx]
+        TRACK[Track Screen<br/>track.jsx]
+        SETTINGS[Settings Screen<br/>settings.jsx]
+    end
+    
+    %% Component Layer
+    subgraph COMP["🧩 Component Layer"]
+        direction TB
+        
+        subgraph SUBMISSION["Submission Components"]
+            SUB_FORM[SubmissionForm.jsx]
+            CAT_SEL[CategorySelector.jsx]
+            PHOTO_PICK[PhotoPicker.jsx]
+            SUBMITTER[SubmitterInfoForm.jsx]
+            SUCCESS_MODAL[SuccessModal.jsx]
+        end
+        
+        subgraph TRACKING["Tracking Components"]
+            TRACK_INPUT[TrackingInput.jsx]
+            SUB_DETAILS[SubmissionDetails.jsx]
+            STATUS_BADGE[StatusBadge.jsx]
+            STATUS_HIST[StatusHistory.jsx]
+        end
+        
+        subgraph COMMON["Common Components"]
+            BUTTON[Button.jsx]
+            INPUT[Input.jsx]
+            LOADING[LoadingSpinner.jsx]
+            ERROR[ErrorMessage.jsx]
+            CONFIRM[ConfirmDialog.jsx]
+            TOAST[Toast.jsx]
+        end
+        
+        subgraph DRAFTS["Draft Components"]
+            DRAFTS_LIST[DraftsList.jsx]
+        end
+    end
+    
+    %% Context Layer
+    subgraph CTX["🌐 Context Layer - Global State"]
+        direction LR
+        NET_CTX[NetworkContext<br/>Connectivity Status]
+        LANG_CTX[LanguageContext<br/>i18n & Translations]
+        APP_CTX[AppContext<br/>App State]
+        TOAST_CTX[ToastContext<br/>Notifications]
+    end
+    
+    %% Service Layer
+    subgraph SVC["⚙️ Service Layer - Business Logic"]
+        direction TB
+        API_SVC[api.js<br/>HTTP Requests]
+        DRAFT_SVC[draftService.js<br/>Draft CRUD]
+        STORAGE_SVC[storage.js<br/>AsyncStorage Wrapper]
+        IMG_SVC[imageService.js<br/>Image Processing]
+    end
+    
+    %% Data Layer
+    subgraph DATA["💾 Data Layer"]
+        direction LR
+        ASYNC[(AsyncStorage<br/>Drafts & Codes)]
+        BACKEND[(Backend API<br/>Express Server)]
+        LOCALES[(Translation Files<br/>en/tl/ceb.json)]
+    end
+    
+    %% Utility Layer
+    subgraph UTIL["🔧 Utility Layer"]
+        VALIDATION[validation.js<br/>Form Validation]
+        HAPTICS[haptics.js<br/>Haptic Feedback]
+        CONSTANTS[constants.js<br/>App Constants]
+    end
+    
+    %% Style Layer
+    subgraph STYLE["🎨 Style Layer"]
+        COLORS[colors.js<br/>Color Palette]
+        TYPO[typography.js<br/>Text Styles]
+        SPACING[spacing.js<br/>Spacing Scale]
+    end
+    
+    %% Connections - UI to Components
+    HOME --> SUB_FORM
+    HOME --> COMMON
+    TRACK --> TRACK_INPUT
+    TRACK --> SUB_DETAILS
+    TRACK --> COMMON
+    SETTINGS --> DRAFTS_LIST
+    SETTINGS --> COMMON
+    
+    %% Connections - Components to Services
+    SUB_FORM --> API_SVC
+    SUB_FORM --> DRAFT_SVC
+    SUB_FORM --> IMG_SVC
+    SUB_FORM --> VALIDATION
+    
+    PHOTO_PICK --> IMG_SVC
+    
+    TRACK_INPUT --> API_SVC
+    TRACK_INPUT --> VALIDATION
+    SUB_DETAILS --> API_SVC
+    
+    DRAFTS_LIST --> DRAFT_SVC
+    
+    %% Connections - Services to Data
+    API_SVC --> BACKEND
+    DRAFT_SVC --> STORAGE_SVC
+    STORAGE_SVC --> ASYNC
+    
+    %% Connections - Contexts to Data
+    LANG_CTX --> LOCALES
+    
+    %% Connections - All Components use Contexts
+    COMP -.->|Uses| CTX
+    
+    %% Connections - All Components use Styles
+    COMP -.->|Styles| STYLE
+    
+    %% Connections - Components use Utils
+    SUB_FORM --> HAPTICS
+    TRACK_INPUT --> HAPTICS
+    DRAFTS_LIST --> HAPTICS
+    
+    %% Styling
+    classDef uiStyle fill:#667eea,stroke:#764ba2,stroke-width:3px,color:#fff
+    classDef compStyle fill:#ed8936,stroke:#c05621,stroke-width:2px,color:#fff
+    classDef ctxStyle fill:#f56565,stroke:#c53030,stroke-width:2px,color:#fff
+    classDef svcStyle fill:#9f7aea,stroke:#6b46c1,stroke-width:2px,color:#fff
+    classDef dataStyle fill:#38b2ac,stroke:#2c7a7b,stroke-width:2px,color:#fff
+    classDef utilStyle fill:#48bb78,stroke:#2f855a,stroke-width:2px,color:#fff
+    classDef styleStyle fill:#f6ad55,stroke:#dd6b20,stroke-width:2px,color:#fff
+    
+    class HOME,TRACK,SETTINGS uiStyle
+    class SUB_FORM,CAT_SEL,PHOTO_PICK,SUBMITTER,SUCCESS_MODAL,TRACK_INPUT,SUB_DETAILS,STATUS_BADGE,STATUS_HIST,BUTTON,INPUT,LOADING,ERROR,CONFIRM,TOAST,DRAFTS_LIST compStyle
+    class NET_CTX,LANG_CTX,APP_CTX,TOAST_CTX ctxStyle
+    class API_SVC,DRAFT_SVC,STORAGE_SVC,IMG_SVC svcStyle
+    class ASYNC,BACKEND,LOCALES dataStyle
+    class VALIDATION,HAPTICS,CONSTANTS utilStyle
+    class COLORS,TYPO,SPACING styleStyle

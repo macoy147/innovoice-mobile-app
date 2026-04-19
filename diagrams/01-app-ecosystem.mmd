@@ -1,0 +1,77 @@
+---
+title: InnoVoice Mobile App - System Ecosystem
+description: High-level overview of the mobile app architecture and external integrations
+---
+
+graph TB
+    subgraph "User Device"
+        APP[📱 InnoVoice Mobile App<br/>React Native + Expo]
+        STORAGE[(📦 AsyncStorage<br/>Local Data)]
+        
+        subgraph "App Layers"
+            UI[🎨 UI Layer<br/>Components & Screens]
+            CONTEXT[🔄 Context Layer<br/>State Management]
+            SERVICE[⚙️ Service Layer<br/>Business Logic]
+        end
+    end
+    
+    subgraph "External Services"
+        API[🌐 Backend API<br/>Express.js Server<br/>Render.com]
+        DB[(🗄️ MongoDB<br/>Database)]
+        CLOUDINARY[☁️ Cloudinary<br/>Image Storage]
+        AI_GROQ[🤖 Groq AI<br/>Llama 3.3 70B]
+        AI_GEMINI[🤖 Google Gemini<br/>1.5 Flash]
+    end
+    
+    subgraph "Network Layer"
+        NETINFO[📡 NetInfo<br/>Connectivity Monitor]
+        AXIOS[🔌 Axios<br/>HTTP Client]
+    end
+    
+    subgraph "Device Features"
+        CAMERA[📷 Camera<br/>expo-image-picker]
+        HAPTIC[📳 Haptics<br/>expo-haptics]
+        CLIPBOARD[📋 Clipboard<br/>expo-clipboard]
+        LOCALE[🌍 Localization<br/>expo-localization]
+    end
+    
+    %% App Internal Flow
+    UI --> CONTEXT
+    CONTEXT --> SERVICE
+    SERVICE --> STORAGE
+    SERVICE --> AXIOS
+    
+    %% Network Monitoring
+    NETINFO -.->|Network Status| CONTEXT
+    
+    %% API Communication
+    AXIOS -->|HTTPS Requests| API
+    API -->|JSON Responses| AXIOS
+    
+    %% Backend Services
+    API --> DB
+    API --> CLOUDINARY
+    API --> AI_GROQ
+    API -.->|Fallback| AI_GEMINI
+    
+    %% Device Features
+    UI --> CAMERA
+    UI --> HAPTIC
+    UI --> CLIPBOARD
+    CONTEXT --> LOCALE
+    
+    %% Data Persistence
+    STORAGE -.->|Drafts, Codes,<br/>Settings| SERVICE
+    
+    %% Styling
+    classDef appLayer fill:#dc2626,stroke:#991b1b,stroke-width:2px,color:#fff
+    classDef external fill:#3b82f6,stroke:#1e40af,stroke-width:2px,color:#fff
+    classDef storage fill:#8b5cf6,stroke:#6d28d9,stroke-width:2px,color:#fff
+    classDef device fill:#16a34a,stroke:#15803d,stroke-width:2px,color:#fff
+    classDef network fill:#f59e0b,stroke:#d97706,stroke-width:2px,color:#fff
+    
+    class APP,UI,CONTEXT,SERVICE appLayer
+    class API,DB,CLOUDINARY,AI_GROQ,AI_GEMINI external
+    class STORAGE storage
+    class CAMERA,HAPTIC,CLIPBOARD,LOCALE device
+    class NETINFO,AXIOS network
