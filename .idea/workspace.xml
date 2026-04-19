@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1ae6b301-4ed6-402d-88c4-e300204e09ed" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/app/(tabs)/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(tabs)/settings.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/settings.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagrams/01-app-ecosystem.mmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagrams/01-application-startup-flow.mmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagrams/02-language-switching-flow.mmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagrams/02-user-journey-overview.mmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagrams/03-feature-submission-flow.mmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagrams/04-feature-tracking-flow.mmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagrams/05-feature-settings-drafts.mmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagrams/06-data-flow-architecture.mmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagrams/07-offline-online-sync.mmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagrams/08-product-roadmap-timeline.mmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagrams/09-feature-priority-matrix.mmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagrams/10-complete-project-structure.mmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagrams/11-file-connections-map.mmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagrams/12-folder-hierarchy.mmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/OfflineIndicator.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/OfflineIndicator.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/Toast.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/Toast.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/drafts/DraftsList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/drafts/DraftsList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/submission/CategorySelector.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/submission/CategorySelector.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/submission/SubmissionForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/submission/SubmissionForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contexts/NetworkContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/NetworkContext.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contexts/ToastContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/ToastContext.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/locales/ceb.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/locales/ceb.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/locales/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/locales/en.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/locales/tl.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/locales/tl.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="3CYyrsRPkcxIce6GnKnNxH4QUcX" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/McCoy/Desktop/InnoVoice Mobile Application/mobile-app&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;
+  }
+}</component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1ae6b301-4ed6-402d-88c4-e300204e09ed" name="Changes" comment="" />
+      <created>1776577000010</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1776577000010</updated>
+    </task>
+    <servers />
+  </component>
+</project>

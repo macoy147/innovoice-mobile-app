@@ -1,0 +1,181 @@
+{
+  "app": {
+    "name": "InnoVoice",
+    "tagline": "Campus Incident Reporting"
+  },
+  "common": {
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "retry": "Retry",
+    "ok": "OK",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "tabs": {
+    "home": "Submit",
+    "track": "Track",
+    "settings": "Settings"
+  },
+  "submission": {
+    "title": "Submit Report",
+    "category": "Category",
+    "selectCategory": "Select a category",
+    "reportTitle": "Title",
+    "titlePlaceholder": "Brief title of the incident",
+    "content": "Description",
+    "contentPlaceholder": "Describe the incident in detail",
+    "anonymous": "Submit Anonymously",
+    "identified": "Include My Information",
+    "addPhoto": "Add Photo",
+    "takePhoto": "Take Photo",
+    "choosePhoto": "Choose from Gallery",
+    "removePhoto": "Remove Photo",
+    "submitting": "Submitting...",
+    "success": "Report Submitted Successfully!",
+    "trackingCode": "Your Tracking Code",
+    "saveCode": "Save this code to track your report",
+    "saveDraft": "Save as Draft",
+    "draftSaved": "Draft saved successfully",
+    "draftUpdated": "Draft updated successfully",
+    "aiAnalysis": "AI Priority Analysis",
+    "tapToCopy": "Tap to copy",
+    "copied": "Copied!",
+    "reportDetails": "Report details",
+    "reportDetailsHint": "A clear title and story help us understand what is happening.",
+    "photoEvidence": "Photo evidence (optional)",
+    "photoEvidenceHint": "A clear photo can help us verify and act faster, but it is not required.",
+    "photoMaxSize": "Maximum file size: 2MB",
+    "beforeSubmit": "Before you submit",
+    "categoryLabel": "Category",
+    "sharingMode": "Sharing mode",
+    "photoAttached": "Photo attached",
+    "notSelected": "Not selected yet",
+    "withMyDetails": "With my details",
+    "stepCategory": "Category",
+    "stepDetails": "Details",
+    "stepSubmit": "Submit",
+    "titleHint": "Short headline that captures your concern.",
+    "contentHint": "Include when, where, and who is involved if you are comfortable.",
+    "aiHint": "Our system helps prioritize urgent cases. Clear details about time, place, and people help us respond more quickly.",
+    "categoryPickHint": "Pick the option that best fits your report."
+  },
+  "submitter": {
+    "info": "Your Information",
+    "name": "Full Name",
+    "studentId": "Student ID",
+    "email": "Email Address",
+    "contactNumber": "Contact Number",
+    "program": "Program",
+    "yearLevel": "Year Level",
+    "followUp": "I want to receive follow-up updates"
+  },
+  "tracking": {
+    "title": "Track Report",
+    "enterCode": "Enter Tracking Code",
+    "codePlaceholder": "VISI-XXXXXXXX-XXXX",
+    "search": "Search",
+    "notFound": "Report not found",
+    "codeNotFound": "This tracking code does not exist. Please check the code and try again.",
+    "codeDeleted": "This report has been removed by an administrator.",
+    "details": "Report Details",
+    "status": "Status",
+    "priority": "Priority",
+    "submittedAt": "Submitted",
+    "statusHistory": "Status History",
+    "savedCodes": "Saved Tracking Codes",
+    "removeCodeConfirm": "Remove this tracking code?",
+    "longPressToDelete": "Long press to delete",
+    "backToSavedCodes": "Back to Saved Codes"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "selectLanguage": "Select Language",
+    "apiServer": "API Server",
+    "apiServerUrl": "API server URL",
+    "apiServerUrlPlaceholder": "https://your-api-server.com",
+    "apiServerUrlSave": "Save URL",
+    "apiServerUrlSaved": "API URL saved",
+    "drafts": "Drafts",
+    "viewDrafts": "View Saved Drafts",
+    "about": "About",
+    "version": "Version",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfUse": "Terms of Use"
+  },
+  "drafts": {
+    "title": "Saved Drafts",
+    "empty": "No saved drafts",
+    "count": "{{count}} draft(s)",
+    "delete": "Delete Draft",
+    "deleteConfirm": "Are you sure you want to delete this draft?",
+    "submitDraft": "Submit Draft"
+  },
+  "offline": {
+    "title": "You're Offline",
+    "message": "You're currently offline. You can save your report as a draft and submit it when you're back online.",
+    "indicator": "Offline"
+  },
+  "network": {
+    "offline": "You're offline",
+    "backOnline": "Back online"
+  },
+  "errors": {
+    "network": "Network error. Please check your connection.",
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address",
+    "invalidTrackingCode": "Invalid tracking code format",
+    "titleTooLong": "Title must not exceed 200 characters",
+    "contentTooLong": "Content must not exceed 2000 characters",
+    "photoTooLarge": "Photo size must not exceed 2MB",
+    "submissionFailed": "Failed to submit report. Please try again.",
+    "validationFailed": "Please check the highlighted fields and try again."
+  },
+  "categories": {
+    "academic": "Academic",
+    "administrative": "Administrative",
+    "extracurricular": "Extracurricular",
+    "general": "General"
+  },
+  "yearLevels": {
+    "1styear": "1st Year",
+    "2ndyear": "2nd Year",
+    "3rdyear": "3rd Year",
+    "4thyear": "4th Year"
+  },
+  "programs": {
+    "bsit": "BSIT",
+    "bshm": "BSHM",
+    "bsie": "BSIE",
+    "bsfi": "BSFi",
+    "bit_ct": "BIT - Computer Technology",
+    "bit_auto": "BIT - Automotive",
+    "bit_elec": "BIT - Electronics",
+    "bsed_math": "BSED-MATH",
+    "beed": "BEED",
+    "btled_he": "BTLED-HE"
+  },
+  "statuses": {
+    "submitted": "Submitted",
+    "under_review": "Under Review",
+    "forwarded": "Forwarded",
+    "action_taken": "Action Taken",
+    "resolved": "Resolved",
+    "rejected": "Rejected"
+  },
+  "priorities": {
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High",
+    "urgent": "Urgent"
+  }
+}

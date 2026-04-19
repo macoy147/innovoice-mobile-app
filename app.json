@@ -1,0 +1,75 @@
+{
+  "expo": {
+    "name": "SSG InnoVoice",
+    "slug": "innovoice-mobile",
+    "version": "1.0.0",
+    "orientation": "default",
+    "icon": "./assets/images/ssg-logo.png",
+    "scheme": "innovoice",
+    "userInterfaceStyle": "automatic",
+    "description": "CTU Daanbantayan Campus incident reporting system for students",
+    "splash": {
+      "image": "./assets/images/ssg-logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#dc2626"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ctudaanbantayan.innovoice",
+      "minimumOsVersion": "13.0",
+      "associatedDomains": [
+        "applinks:innovoice.ctudaanbantayan.edu.ph"
+      ]
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/ssg-logo.png",
+        "backgroundColor": "#dc2626"
+      },
+      "predictiveBackGestureEnabled": false,
+      "package": "com.ctudaanbantayan.innovoice",
+      "minSdkVersion": 21,
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "https",
+              "host": "innovoice.ctudaanbantayan.edu.ph",
+              "pathPrefix": "/submit"
+            },
+            {
+              "scheme": "innovoice"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ]
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/ssg-logo.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      "expo-localization",
+      "expo-web-browser"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "89b6240e-0ff9-4dd1-b7e7-bcb5642aec0f"
+      }
+    },
+    "owner": "mccoyzzz"
+  }
+}

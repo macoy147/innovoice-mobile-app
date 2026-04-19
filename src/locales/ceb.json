@@ -1,0 +1,181 @@
+{
+  "app": {
+    "name": "InnoVoice",
+    "tagline": "Pagtaho sa Insidente sa Kampus"
+  },
+  "common": {
+    "submit": "Isumite",
+    "cancel": "Kanselahon",
+    "save": "I-save",
+    "delete": "Tangtangon",
+    "edit": "I-edit",
+    "close": "Sirado",
+    "back": "Balik",
+    "next": "Sunod",
+    "loading": "Nag-load...",
+    "error": "Sayop",
+    "success": "Malampuson",
+    "retry": "Sulayi Pag-usab",
+    "ok": "OK",
+    "yes": "Oo",
+    "no": "Dili"
+  },
+  "tabs": {
+    "home": "Isumite",
+    "track": "Subaybayon",
+    "settings": "Settings"
+  },
+  "submission": {
+    "title": "Magsumite og Taho",
+    "category": "Kategorya",
+    "selectCategory": "Pilia ang kategorya",
+    "reportTitle": "Ulohan",
+    "titlePlaceholder": "Mubo nga ulohan sa insidente",
+    "content": "Deskripsyon",
+    "contentPlaceholder": "Ihulagway ang insidente sa detalye",
+    "anonymous": "Isumite nga Anonymous",
+    "identified": "Ilakip ang Akong Impormasyon",
+    "addPhoto": "Idugang og Litrato",
+    "takePhoto": "Kuhaa og Litrato",
+    "choosePhoto": "Pilia gikan sa Gallery",
+    "removePhoto": "Tangtangon ang Litrato",
+    "submitting": "Gisusumite...",
+    "success": "Malampuson nga Naisumite ang Taho!",
+    "trackingCode": "Imong Tracking Code",
+    "saveCode": "I-save kini nga code aron masubaybayon ang imong taho",
+    "saveDraft": "I-save isip Draft",
+    "draftSaved": "Malampuson nga na-save ang draft",
+    "draftUpdated": "Malampuson nga na-update ang draft",
+    "aiAnalysis": "AI Priority Analysis",
+    "tapToCopy": "I-tap aron kopyahon",
+    "copied": "Nakopya na!",
+    "reportDetails": "Mga detalye sa taho",
+    "reportDetailsHint": "Ang klaro nga ulohan ug istorya makatabang namo nga masabtan ang nahitabo.",
+    "photoEvidence": "Ebidensyang litrato (opsyonal)",
+    "photoEvidenceHint": "Ang klaro nga litrato makatabang namo nga ma-verify ug maaksyonan dayon, apan dili kini kinahanglanon.",
+    "photoMaxSize": "Pinakadako nga gidak-on sa file: 2MB",
+    "beforeSubmit": "Sa wala pa nimo isumite",
+    "categoryLabel": "Kategorya",
+    "sharingMode": "Paagi sa pagpaambit",
+    "photoAttached": "May gilakip nga litrato",
+    "notSelected": "Wala pa napili",
+    "withMyDetails": "Uban sa akong mga detalye",
+    "stepCategory": "Kategorya",
+    "stepDetails": "Detalye",
+    "stepSubmit": "Isumite",
+    "titleHint": "Mubo nga headline nga naglakip sa imong kabalaka.",
+    "contentHint": "Ilakip kung kanus-a, asa, ug kinsa ang nalambigit kung komportable ka.",
+    "aiHint": "Ang among sistema makatabang sa pag-priyoridad sa mga dinalian nga kaso. Klaro nga detalye bahin sa oras, lugar, ug mga tawo makatabang namo nga motubag og mas paspas.",
+    "categoryPickHint": "Pilia ang opsyon nga pinakahaom sa imong taho."
+  },
+  "submitter": {
+    "info": "Imong Impormasyon",
+    "name": "Tibuok nga Ngalan",
+    "studentId": "Student ID",
+    "email": "Email Address",
+    "contactNumber": "Contact Number",
+    "program": "Programa",
+    "yearLevel": "Tuig",
+    "followUp": "Gusto kong makadawat og follow-up updates"
+  },
+  "tracking": {
+    "title": "Subaybayon ang Taho",
+    "enterCode": "Isulod ang Tracking Code",
+    "codePlaceholder": "VISI-XXXXXXXX-XXXX",
+    "search": "Pangitaa",
+    "notFound": "Wala makit-i ang taho",
+    "codeNotFound": "Wala kini nga tracking code. Palihug susiha ang code ug sulayi pag-usab.",
+    "codeDeleted": "Kini nga taho gitangtang sa administrator.",
+    "details": "Detalye sa Taho",
+    "status": "Kahimtang",
+    "priority": "Priyoridad",
+    "submittedAt": "Gisumite",
+    "statusHistory": "Kasaysayan sa Kahimtang",
+    "savedCodes": "Naka-save nga Tracking Codes",
+    "removeCodeConfirm": "Tangtangon kini nga tracking code?",
+    "longPressToDelete": "Dugay og pindot aron tangtangon",
+    "backToSavedCodes": "Balik sa Naka-save nga Codes"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Pinulongan",
+    "selectLanguage": "Pilia ang Pinulongan",
+    "apiServer": "API Server",
+    "apiServerUrl": "API server URL",
+    "apiServerUrlPlaceholder": "https://your-api-server.com",
+    "apiServerUrlSave": "Save URL",
+    "apiServerUrlSaved": "API URL saved",
+    "drafts": "Mga Draft",
+    "viewDrafts": "Tan-awa ang Naka-save nga Drafts",
+    "about": "Mahitungod",
+    "version": "Bersyon",
+    "privacyPolicy": "Patakaran sa Privacy",
+    "termsOfUse": "Mga Termino sa Paggamit"
+  },
+  "drafts": {
+    "title": "Naka-save nga Drafts",
+    "empty": "Walay naka-save nga drafts",
+    "count": "{{count}} draft(s)",
+    "delete": "Tangtangon ang Draft",
+    "deleteConfirm": "Sigurado ka ba nga gusto nimong tangtangon kini nga draft?",
+    "submitDraft": "Isumite ang Draft"
+  },
+  "offline": {
+    "title": "Offline Ka",
+    "message": "Karon offline ka. Mahimo nimong i-save ang imong taho isip draft ug isumite kini kon mobalik ka online.",
+    "indicator": "Offline"
+  },
+  "network": {
+    "offline": "Offline ka",
+    "backOnline": "Balik na online"
+  },
+  "errors": {
+    "network": "Network error. Palihug susiha ang imong koneksyon.",
+    "required": "Gikinahanglan kini nga field",
+    "invalidEmail": "Palihug ibutang ang husto nga email address",
+    "invalidTrackingCode": "Dili husto nga format sa tracking code",
+    "titleTooLong": "Ang ulohan dili kinahanglan molabaw sa 200 characters",
+    "contentTooLong": "Ang sulod dili kinahanglan molabaw sa 2000 characters",
+    "photoTooLarge": "Ang gidak-on sa litrato dili kinahanglan molabaw sa 2MB",
+    "submissionFailed": "Napakyas ang pagsumite sa taho. Palihug sulayi pag-usab.",
+    "validationFailed": "Palihug susiha ang mga gi-highlight nga field ug sulayi pag-usab."
+  },
+  "categories": {
+    "academic": "Akademiko",
+    "administrative": "Administratibo",
+    "extracurricular": "Extracurricular",
+    "general": "Kinatibuk-an"
+  },
+  "yearLevels": {
+    "1styear": "1st Year",
+    "2ndyear": "2nd Year",
+    "3rdyear": "3rd Year",
+    "4thyear": "4th Year"
+  },
+  "programs": {
+    "bsit": "BSIT",
+    "bshm": "BSHM",
+    "bsie": "BSIE",
+    "bsfi": "BSFi",
+    "bit_ct": "BIT - Computer Technology",
+    "bit_auto": "BIT - Automotive",
+    "bit_elec": "BIT - Electronics",
+    "bsed_math": "BSED-MATH",
+    "beed": "BEED",
+    "btled_he": "BTLED-HE"
+  },
+  "statuses": {
+    "submitted": "Gisumite",
+    "under_review": "Gisusi",
+    "forwarded": "Gipadala",
+    "action_taken": "May Aksyon",
+    "resolved": "Nasulbad",
+    "rejected": "Gisalikway"
+  },
+  "priorities": {
+    "low": "Ubos",
+    "medium": "Tunga-tunga",
+    "high": "Taas",
+    "urgent": "Dinalian"
+  }
+}
