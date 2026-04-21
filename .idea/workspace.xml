@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ae6b301-4ed6-402d-88c4-e300204e09ed" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/settings.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/settings.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagram/InnoVoice Mobile App - Complete User Journey.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagram/InnoVoice Mobile App - System Ecosystem.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagram/Report Submission Feature - Detailed Flow.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagram/Report Tracking Feature - Detailed Flow.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagram/Settings &amp; Draft Management Feature - Detailed Flow.svg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/diagrams/01-app-ecosystem.mmd" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/diagrams/01-application-startup-flow.mmd" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/diagrams/02-language-switching-flow.mmd" beforeDir="false" />
@@ -21,18 +25,7 @@
       <change beforePath="$PROJECT_DIR$/diagrams/10-complete-project-structure.mmd" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/diagrams/11-file-connections-map.mmd" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/diagrams/12-folder-hierarchy.mmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/OfflineIndicator.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/OfflineIndicator.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/Toast.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/Toast.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/drafts/DraftsList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/drafts/DraftsList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/submission/CategorySelector.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/submission/CategorySelector.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/submission/SubmissionForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/submission/SubmissionForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/NetworkContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/NetworkContext.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/ToastContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/ToastContext.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/locales/ceb.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/locales/ceb.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/locales/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/locales/en.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/locales/tl.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/locales/tl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagrams/README.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
