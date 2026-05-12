@@ -7,3 +7,4 @@ export { SuccessMessage } from './SuccessMessage';
 export { ErrorBoundary } from './ErrorBoundary';
 export { OfflineIndicator } from './OfflineIndicator';
 export { EmptyState } from './EmptyState';
+export { Toast } from './Toast';

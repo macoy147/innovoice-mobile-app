@@ -11,17 +11,7 @@ import { ConfirmDialog } from '../common/ConfirmDialog';
 import { colors } from '../../styles/colors';
 import { TYPOGRAPHY } from '../../styles/typography';
 import { SPACING } from '../../styles/spacing';
-
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
-};
+import { formatDate } from '../../utils/dateUtils';
 
 // Category icons matching the CategorySelector
 const CATEGORY_ICONS = {

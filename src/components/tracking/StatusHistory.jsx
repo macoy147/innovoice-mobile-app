@@ -4,17 +4,7 @@ import { StatusBadge } from './StatusBadge';
 import { colors } from '../../styles/colors';
 import { TYPOGRAPHY } from '../../styles/typography';
 import { SPACING } from '../../styles/spacing';
-
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
-};
+import { formatDate } from '../../utils/dateUtils';
 
 export const StatusHistory = ({ history = [] }) => {
   if (!history || history.length === 0) {

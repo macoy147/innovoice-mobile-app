@@ -66,7 +66,9 @@
     "titleHint": "Maikling headline na naglalarawan ng iyong alalahanin.",
     "contentHint": "Isama kung kailan, saan, at sino ang sangkot kung komportable ka.",
     "aiHint": "Tinutulungan ng aming sistema na bigyang-priyoridad ang mga agarang kaso. Malinaw na detalye tungkol sa oras, lugar, at mga tao ay makakatulong sa amin na tumugon nang mas mabilis.",
-    "categoryPickHint": "Piliin ang opsyon na pinaka-angkop sa iyong ulat."
+    "categoryPickHint": "Piliin ang opsyon na pinaka-angkop sa iyong ulat.",
+    "confirmSubmitTitle": "Isumite ang Ulat?",
+    "confirmSubmitMessage": "Handa ka na bang isumite ang ulat na ito? Kapag naisumite na, makakatanggap ka ng tracking code upang subaybayan ang progreso nito."
   },
   "submitter": {
     "info": "Iyong Impormasyon",
@@ -118,7 +120,10 @@
     "count": "{{count}} draft(s)",
     "delete": "Tanggalin ang Draft",
     "deleteConfirm": "Sigurado ka bang gusto mong tanggalin ang draft na ito?",
-    "submitDraft": "Isumite ang Draft"
+    "submitDraft": "Isumite ang Draft",
+    "deleteAll": "Tanggalin Lahat",
+    "deleteAllTitle": "Tanggalin Lahat ng Drafts?",
+    "deleteAllConfirm": "Sigurado ka bang gusto mong tanggalin ang lahat ng naka-save na drafts? Hindi na ito maaaring ibalik."
   },
   "offline": {
     "title": "Offline Ka",

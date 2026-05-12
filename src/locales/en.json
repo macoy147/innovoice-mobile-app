@@ -66,7 +66,9 @@
     "titleHint": "Short headline that captures your concern.",
     "contentHint": "Include when, where, and who is involved if you are comfortable.",
     "aiHint": "Our system helps prioritize urgent cases. Clear details about time, place, and people help us respond more quickly.",
-    "categoryPickHint": "Pick the option that best fits your report."
+    "categoryPickHint": "Pick the option that best fits your report.",
+    "confirmSubmitTitle": "Submit Report?",
+    "confirmSubmitMessage": "Are you ready to submit this report? Once submitted, you'll receive a tracking code to monitor its progress."
   },
   "submitter": {
     "info": "Your Information",
@@ -118,7 +120,10 @@
     "count": "{{count}} draft(s)",
     "delete": "Delete Draft",
     "deleteConfirm": "Are you sure you want to delete this draft?",
-    "submitDraft": "Submit Draft"
+    "submitDraft": "Submit Draft",
+    "deleteAll": "Delete All",
+    "deleteAllTitle": "Delete All Drafts?",
+    "deleteAllConfirm": "Are you sure you want to delete all saved drafts? This action cannot be undone."
   },
   "offline": {
     "title": "You're Offline",

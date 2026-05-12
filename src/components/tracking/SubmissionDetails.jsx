@@ -7,17 +7,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { colors } from '../../styles/colors';
 import { TYPOGRAPHY } from '../../styles/typography';
 import { SPACING } from '../../styles/spacing';
-
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
-};
+import { formatDate } from '../../utils/dateUtils';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 

@@ -19,6 +19,7 @@ import { Input } from '../common/Input';
 import { Button } from '../common/Button';
 import { ErrorMessage } from '../common/ErrorMessage';
 import { LoadingSpinner } from '../common/LoadingSpinner';
+import { ConfirmDialog } from '../common/ConfirmDialog';
 import { useNetwork } from '../../contexts/NetworkContext';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { apiService } from '../../services/api';
@@ -190,6 +191,7 @@ export const SubmissionForm = ({
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [trackingCode, setTrackingCode] = useState('');
   const [aiData, setAiData] = useState(null);
+  const [showSubmitConfirm, setShowSubmitConfirm] = useState(false);
 
   const hasCategory = Boolean(formData.category);
   const hasDetails = Boolean(formData.title && formData.content);
@@ -275,6 +277,20 @@ export const SubmissionForm = ({
         }
       );
     }
+  };
+
+  const handleSubmitClick = () => {
+    // Show confirmation dialog before submitting
+    setShowSubmitConfirm(true);
+  };
+
+  const handleConfirmSubmit = () => {
+    setShowSubmitConfirm(false);
+    handleSubmit();
+  };
+
+  const handleCancelSubmit = () => {
+    setShowSubmitConfirm(false);
   };
 
   const handleSubmit = async () => {
@@ -633,13 +649,13 @@ export const SubmissionForm = ({
       <View style={styles.buttonContainer}>
         <Button
           title={isSubmitting ? t('submission.submitting') : t('common.submit')}
-          onPress={handleSubmit}
+          onPress={handleSubmitClick}
           variant="primary"
           pill
           gradient
           icon={<FontAwesome name="paper-plane" size={16} color={colors.white} />}
           loading={isSubmitting}
-          disabled={!isConnected || isSubmitting}
+          disabled={!isConnected || isSubmitting || (!formData.title?.trim() && !formData.content?.trim())}
           style={styles.submitButton}
           accessibilityLabel={t('common.submit')}
         />
@@ -655,6 +671,18 @@ export const SubmissionForm = ({
           accessibilityLabel={t('submission.saveDraft')}
         />
       </View>
+
+      {/* Submit Confirmation Dialog */}
+      <ConfirmDialog
+        visible={showSubmitConfirm}
+        title={t('submission.confirmSubmitTitle')}
+        message={t('submission.confirmSubmitMessage')}
+        confirmText={t('common.submit')}
+        cancelText={t('common.cancel')}
+        onConfirm={handleConfirmSubmit}
+        onCancel={handleCancelSubmit}
+        destructive={false}
+      />
 
       <SuccessModal
         visible={showSuccessModal}

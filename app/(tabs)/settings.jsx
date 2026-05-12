@@ -191,10 +191,10 @@ export default function SettingsScreen() {
                   style={styles.draftButton}
                 />
                 <Button
-                  title={t('common.delete')}
+                  title={t('drafts.deleteAll')}
                   onPress={handleClearDrafts}
                   variant="outline"
-                  style={styles.draftButton}
+                  style={[styles.draftButton, styles.deleteAllButton]}
                 />
               </View>
             )}
@@ -239,7 +239,7 @@ export default function SettingsScreen() {
         {/* Footer */}
         <View style={styles.footer}>
           <Text style={styles.footerText}>
-            © 2024 CTU Daanbantayan Campus
+            © 2025 CTU Daanbantayan Campus
           </Text>
           <Text style={styles.footerText}>
             Supreme Student Government
@@ -302,9 +302,9 @@ export default function SettingsScreen() {
       {/* Clear All Drafts Confirmation Dialog */}
       <ConfirmDialog
         visible={clearAllConfirmVisible}
-        title={t('drafts.delete')}
-        message={t('drafts.deleteConfirm')}
-        confirmText={t('common.delete')}
+        title={t('drafts.deleteAllTitle')}
+        message={t('drafts.deleteAllConfirm')}
+        confirmText={t('drafts.deleteAll')}
         cancelText={t('common.cancel')}
         onConfirm={confirmClearAll}
         onCancel={cancelClearAll}
@@ -351,6 +351,9 @@ const styles = StyleSheet.create({
   },
   draftButton: {
     flex: 1,
+  },
+  deleteAllButton: {
+    borderColor: colors.error,
   },
   aboutContainer: {
     backgroundColor: colors.backgroundSecondary,

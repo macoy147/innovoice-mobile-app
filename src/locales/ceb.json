@@ -66,7 +66,9 @@
     "titleHint": "Mubo nga headline nga naglakip sa imong kabalaka.",
     "contentHint": "Ilakip kung kanus-a, asa, ug kinsa ang nalambigit kung komportable ka.",
     "aiHint": "Ang among sistema makatabang sa pag-priyoridad sa mga dinalian nga kaso. Klaro nga detalye bahin sa oras, lugar, ug mga tawo makatabang namo nga motubag og mas paspas.",
-    "categoryPickHint": "Pilia ang opsyon nga pinakahaom sa imong taho."
+    "categoryPickHint": "Pilia ang opsyon nga pinakahaom sa imong taho.",
+    "confirmSubmitTitle": "Isumite ang Taho?",
+    "confirmSubmitMessage": "Andam na ba ka nga isumite kini nga taho? Kon gisumite na, makadawat ka og tracking code aron masubaybayon ang progreso niini."
   },
   "submitter": {
     "info": "Imong Impormasyon",
@@ -118,7 +120,10 @@
     "count": "{{count}} draft(s)",
     "delete": "Tangtangon ang Draft",
     "deleteConfirm": "Sigurado ka ba nga gusto nimong tangtangon kini nga draft?",
-    "submitDraft": "Isumite ang Draft"
+    "submitDraft": "Isumite ang Draft",
+    "deleteAll": "Tangtangon Tanan",
+    "deleteAllTitle": "Tangtangon ang Tanan nga Drafts?",
+    "deleteAllConfirm": "Sigurado ka ba nga gusto nimong tangtangon ang tanan nga naka-save nga drafts? Dili na kini mabalik."
   },
   "offline": {
     "title": "Offline Ka",

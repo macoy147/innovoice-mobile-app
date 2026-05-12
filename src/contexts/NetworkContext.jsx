@@ -2,6 +2,11 @@ import React, { createContext, useContext, useState, useEffect, useRef } from 'r
 import NetInfo from '@react-native-community/netinfo';
 import { API_CONFIG } from '../config/api.config';
 import { useToast } from './ToastContext';
+import { I18n } from 'i18n-js';
+import en from '../locales/en.json';
+import tl from '../locales/tl.json';
+import ceb from '../locales/ceb.json';
+import StorageService from '../services/storage';
 
 /**
  * Network Context
@@ -66,13 +71,33 @@ export const NetworkProvider = ({ children }) => {
   const speedCheckDone = useRef(false);
   const previousConnectionState = useRef(true);
   const isInitialMount = useRef(true);
+  const { showToast } = useToast();
+  
+  // Initialize i18n for translations
+  const i18nRef = useRef(null);
+  if (!i18nRef.current) {
+    i18nRef.current = new I18n({ en, tl, ceb });
+    i18nRef.current.defaultLocale = 'en';
+    i18nRef.current.enableFallback = true;
+  }
+  
+  // Load current language
+  useEffect(() => {
+    StorageService.getLanguage().then(lang => {
+      if (lang && i18nRef.current) {
+        i18nRef.current.locale = lang;
+      }
+    });
+  }, []);
 
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener(state => {
+      const newConnectionState = state.isConnected ?? true;
+      
       setNetworkState(prev => {
         const next = {
           ...prev,
-          isConnected: state.isConnected ?? true,
+          isConnected: newConnectionState,
           isInternetReachable: state.isInternetReachable ?? true,
           connectionType: state.type || 'unknown',
         };
@@ -83,6 +108,20 @@ export const NetworkProvider = ({ children }) => {
         }
         return next;
       });
+
+      // Show toast notifications for connection changes (skip initial mount)
+      if (!isInitialMount.current && previousConnectionState.current !== newConnectionState) {
+        const i18n = i18nRef.current;
+        if (!newConnectionState) {
+          // Connection lost
+          showToast(i18n.t('network.offline'), 'error', 3000);
+        } else {
+          // Connection restored
+          showToast(i18n.t('network.backOnline'), 'success', 3000);
+        }
+      }
+      
+      previousConnectionState.current = newConnectionState;
 
       if (__DEV__) {
         console.log('Network state changed:', {
@@ -116,7 +155,7 @@ export const NetworkProvider = ({ children }) => {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [showToast]);
 
   useEffect(() => {
     if (speedCheckDone.current) return;

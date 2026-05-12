@@ -7,33 +7,33 @@ import { SPACING } from '../../styles/spacing';
 const STATUS_CONFIG = {
   submitted: {
     label: 'Submitted',
-    color: colors.submitted,
+    color: '#374151',
     backgroundColor: '#f3f4f6',
   },
   under_review: {
     label: 'Under Review',
-    color: colors.underReview,
-    backgroundColor: colors.primaryLight,
+    color: '#92400e',
+    backgroundColor: '#fef3c7',
   },
   forwarded: {
     label: 'Forwarded',
-    color: colors.forwarded,
-    backgroundColor: '#ede9fe',
+    color: '#1e40af',
+    backgroundColor: '#dbeafe',
   },
   action_taken: {
     label: 'Action Taken',
-    color: colors.actionTaken,
-    backgroundColor: colors.warningLight,
+    color: '#5b21b6',
+    backgroundColor: '#ede9fe',
   },
   resolved: {
     label: 'Resolved',
-    color: colors.resolved,
-    backgroundColor: colors.successLight,
+    color: '#065f46',
+    backgroundColor: '#d1fae5',
   },
   rejected: {
     label: 'Rejected',
-    color: colors.rejected,
-    backgroundColor: colors.errorLight,
+    color: '#991b1b',
+    backgroundColor: '#fee2e2',
   },
 };
 
